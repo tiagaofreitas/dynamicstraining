@@ -30,8 +30,7 @@ namespace DynamicsConnection
 
             CrmServiceClient conn = new CrmServiceClient(_connectionString);
 
-            _orgService = (IOrganizationService)conn.OrganizationWebProxyClient != null ? (IOrganizationService)conn.OrganizationWebProxyClient
-                : (IOrganizationService)conn.OrganizationServiceProxy;
+            _orgService = conn.OrganizationWebProxyClient ?? (IOrganizationService)conn.OrganizationServiceProxy;
 
             TestCrmConnection();
 

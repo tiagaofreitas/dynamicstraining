@@ -54,6 +54,10 @@
       <Project>{74bf881a-a08c-4ae1-9315-b3033876f40d}</Project>
       <Name>DynamicsConnection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{7623cac6-6acb-46c0-a45e-37e4c267ade8}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

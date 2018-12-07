@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Logger;
 
 namespace ConsoleAppTraining
 {
@@ -13,6 +14,9 @@ namespace ConsoleAppTraining
         static void Main(string[] args)
         {
             ConnectionHelper connectionHelper = new ConnectionHelper(ConfigurationManager.ConnectionStrings["dev"].ToString());
+            Log log = new Log();
+
+            log.LogInformation("Teste");
         }
     }
 }
