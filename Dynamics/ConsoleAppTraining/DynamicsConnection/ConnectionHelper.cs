@@ -1,12 +1,9 @@
-﻿using Microsoft.Crm.Sdk.Messages;
+﻿using Logger;
+using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Tooling.Connector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DynamicsConnection
 {
@@ -28,11 +25,21 @@ namespace DynamicsConnection
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            CrmServiceClient conn = new CrmServiceClient(_connectionString);
+            Log.LogInformation("Trying to connect to Dynamics 365");
 
-            _orgService = conn.OrganizationWebProxyClient ?? (IOrganizationService)conn.OrganizationServiceProxy;
+            try
+            {
+                CrmServiceClient conn = new CrmServiceClient(_connectionString);
 
-            TestCrmConnection();
+                _orgService = conn.OrganizationWebProxyClient ?? (IOrganizationService)conn.OrganizationServiceProxy;
+
+                TestCrmConnection();
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+                throw ex;
+            }
 
             return _orgService;
         }

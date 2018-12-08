@@ -9,9 +9,8 @@ namespace ConsoleAppTraining
         static void Main(string[] args)
         {
             ConnectionHelper connectionHelper = new ConnectionHelper(ConfigurationManager.ConnectionStrings["dev"].ToString());
-            Log log = new Log();
 
-            log.LogInformation("Teste");
+            Log.LogInformation("Teste");
         }
     }
 }

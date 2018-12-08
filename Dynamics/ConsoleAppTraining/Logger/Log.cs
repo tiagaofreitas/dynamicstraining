@@ -7,22 +7,27 @@ using System.Threading.Tasks;
 
 namespace Logger
 {
-    public class Log
+    public static class Log
     {
-        private ILog _logger;
-        public Log()
+        private static ILog _logger;
+        static Log()
         {
             _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
 
-        public void LogInformation(string message)
+        public static void LogInformation(string message)
         {
             _logger.Info(message);
         }
 
-        public void LogError(string message)
+        public static void LogWarn(string message)
         {
-            _logger.Error(message);
+            _logger.Warn(message);
+        }
+
+        public static void LogError(string message)
+        {
+            _logger.Error($"ERROR DURING APPLICATION EXECUTION: {message}. METHOD: {_logger.Logger.Name}");
         }
     }
 }
